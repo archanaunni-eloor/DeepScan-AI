@@ -43,8 +43,8 @@ with st.sidebar:
     st.markdown("---")
     st.subheader("Developer Profiles")
     # Replace these with your actual links
-    st.markdown("[🔗 LinkedIn](https://www.linkedin.com/in/your-profile)")
-    st.markdown("[💻 GitHub](https://github.com/your-username)")
+    st.markdown("[🔗 LinkedIn](https://www.linkedin.com/in/unni-r-b09398a7/)")
+    st.markdown("[💻 GitHub](https://github.com/archanaunni-eloor)")
     
     st.markdown("---")
     api_key = st.text_input("Enter Gemini API Key:", type="password")
