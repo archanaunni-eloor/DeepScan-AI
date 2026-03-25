@@ -62,7 +62,7 @@ if api_key:
     if "video_ready" not in st.session_state: st.session_state.video_ready = False
 
     # Input Selection
-    option = st.radio("Select Input Method:", ("Upload Video", "YouTube Link"))
+    option = st.radio("Select Input Method:", ("Upload Video", "YouTube Link (Server Restricted)"))
     video_path = "temp_video.mp4"
 
     if option == "Upload Video":
@@ -72,18 +72,9 @@ if api_key:
                 f.write(uploaded_file.getbuffer())
             st.session_state.video_ready = True
 
-    elif option == "YouTube Link":
-        youtube_url = st.text_input("Enter YouTube URL:")
-        if youtube_url and st.button("Fetch Video"):
-            with st.spinner("Downloading..."):
-                ydl_opts = {'format': 'best[ext=mp4]', 'outtmpl': video_path, 'overwrites': True}
-                try:
-                    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                        ydl.download([youtube_url])
-                    st.session_state.video_ready = True
-                    st.success("Download Complete!")
-                except Exception as e:
-                    st.error(f"Download Error: {e}")
+    elif option == "YouTube Link (Server Restricted)":
+        st.warning("⚠️ **Note:** Due to YouTube's strict anti-bot policies on shared cloud servers, this feature is temporarily disabled in the live demo. Please use the **'Upload Video'** option to test the app.")
+        st.info("Direct YouTube analysis works perfectly on Localhost or Private Servers with dedicated IPs.")
 
     # --- Analysis & Result Section ---
     if st.session_state.video_ready and os.path.exists(video_path):
